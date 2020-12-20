@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
@@ -11,7 +11,7 @@ import { CalendarEvent } from './CalendarEvent';
 import { CalendarModal } from './CalendarModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiOpenModal } from '../../actions/ui';
-import { eventClearActiveEvent, eventSetActive } from '../../actions/event';
+import { eventClearActiveEvent, eventSatrtLoading, eventSetActive } from '../../actions/event';
 import { AddNewFab } from '../ui/AddNewFab';
 import { DeleteEventFab } from '../ui/DeleteEventFab';
 
@@ -20,10 +20,13 @@ const localizer = momentLocalizer(moment);
 
 export const CalendarScreen = () => {
     const dispatch = useDispatch();
+    const { user } = useSelector(state => state.auth);
     const { events, activeEvent } = useSelector(state => state.calendar);
-    // TODO: leer del store todos los eventos
-
     const [lastView, setLastView] = useState( localStorage.getItem('lastView' ) || 'month' );
+
+    useEffect(() => {
+        dispatch( eventSatrtLoading() );
+    }, [ dispatch ])
 
     const onDoubleClick = ( event ) => {
         dispatch( uiOpenModal() );
@@ -34,6 +37,7 @@ export const CalendarScreen = () => {
     }
 
     const eventStyleGetter = ( event, star, end, isSelected ) => {
+
     }
     
     const onViewChangue = ( event ) => {

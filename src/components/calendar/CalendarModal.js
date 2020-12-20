@@ -6,7 +6,7 @@ import Swal from 'sweetalert2'
 import { useDispatch, useSelector } from 'react-redux';
 import { uiCloseModal } from '../../actions/ui';
 
-import { eventAddNew, eventClearActiveEvent, eventUpdated } from '../../actions/event'
+import { eventStartAddNew, eventClearActiveEvent, eventStratUpdate } from '../../actions/event'
 
 const customStyles = {
     content : {
@@ -61,14 +61,12 @@ export const CalendarModal = () => {
     }
 
     const closeModal = () => {
-        console.log('Modal debe cerrarse...');
         dispatch( uiCloseModal() );
         setFormValues( initEvent );
         dispatch( eventClearActiveEvent() );
     }
 
     const handleStartDateChange = (e) => {
-        console.log({e});
         setDateStart( e );
         setFormValues({
             ...formValues,
@@ -77,7 +75,6 @@ export const CalendarModal = () => {
     }
 
     const handleEndDateChange = (e) => {
-        console.log({e});
         setDateEnd( e );
         setFormValues({
             ...formValues,
@@ -102,22 +99,13 @@ export const CalendarModal = () => {
         }
 
         if ( activeEvent ) {
-            dispatch( eventUpdated( formValues ) );
+            dispatch( eventStratUpdate( formValues ) );
         } else {
-            dispatch(eventAddNew({
-                ...formValues,
-                id: new Date().getTime(),
-                user: {
-                    _id: new Date().getTime(),
-                    name: 'Daniel'
-                }
-            }));
+            dispatch( eventStartAddNew( formValues ) );
         }
 
         setTitleValid( true );
         closeModal();
-
-        // TODO: guardar informacón BBDD
     }
 
     return (

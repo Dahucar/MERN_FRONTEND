@@ -26,7 +26,6 @@ export const fetchConToken = ( endpoint, data, method = 'GET' ) => {
     const url = `${ baseUrl }/${ endpoint }/`;
     // Obtenfo el token del localStorage
     const token = localStorage.getItem('token') || '';
-    console.log("Token desde fetch: "+ token );
     if ( method === 'GET' ) {
         return fetch( url, {
             method,

@@ -62,7 +62,6 @@ export const CalendarModal = () => {
 
     const closeModal = () => {
         console.log('Modal debe cerrarse...');
-        // TODO: cerrar modal.
         dispatch( uiCloseModal() );
         setFormValues( initEvent );
         dispatch( eventClearActiveEvent() );
@@ -124,7 +123,6 @@ export const CalendarModal = () => {
     return (
         <Modal
             isOpen={ modalOpen }
-        //  onAfterOpen={afterOpenModal}
             onRequestClose={ closeModal }
             style={customStyles}
             className="modal"

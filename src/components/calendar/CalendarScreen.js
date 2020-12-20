@@ -23,7 +23,7 @@ export const CalendarScreen = () => {
     const { events, activeEvent } = useSelector(state => state.calendar);
     // TODO: leer del store todos los eventos
 
-    const [lastView, setLastView] = useState( localStorage.getItem('lastView') );
+    const [lastView, setLastView] = useState( localStorage.getItem('lastView' ) || 'month' );
 
     const onDoubleClick = ( event ) => {
         dispatch( uiOpenModal() );

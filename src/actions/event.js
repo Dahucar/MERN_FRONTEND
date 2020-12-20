@@ -10,7 +10,6 @@ export const eventStartAddNew = ( event ) => {
             //usar fetch con token para tener acceso al usuario
             const resp = await fetchConToken( 'events', event, 'POST' );
             const body = await resp.json();
-            console.log(body);
             // si se guardo el evento. voy a usar los datos del evento que llega por parametro para mostrarlo en el calendario.
             if ( body.ok ) {
                 // agrego los datos necesarios al avento.

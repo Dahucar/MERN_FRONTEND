@@ -20,7 +20,6 @@ const localizer = momentLocalizer(moment);
 
 export const CalendarScreen = () => {
     const dispatch = useDispatch();
-    const { user } = useSelector(state => state.auth);
     const { events, activeEvent } = useSelector(state => state.calendar);
     const [lastView, setLastView] = useState( localStorage.getItem('lastView' ) || 'month' );
 
@@ -46,7 +45,6 @@ export const CalendarScreen = () => {
     }
 
     const handleSelectEventoCalendar = (e) => {
-        console.log(e);
         dispatch( eventClearActiveEvent() );
     }
 

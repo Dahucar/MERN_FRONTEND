@@ -9,31 +9,23 @@ export const LoginScreen = () => {
     const dispatch = useDispatch();
 
     const [ formLoginValues, handleLoginInputChanges ] = useForm({
-        lEmail: 'danielhuenul90@gmail.com',
-        lPassword: '12345678'
+        lEmail: '',
+        lPassword: ''
     });
 
     const [ formRegisterValues, handleRegisterInputChanges ] = useForm({
-        rName: 'Daniel',
-        rEmail: 'danielhuenul90@gmail.com',
-        rPassword1: '12345678',
-        rPassword2: '12345678'
+        rName: '',
+        rEmail: '',
+        rPassword1: '',
+        rPassword2: ''
     });
 
     const { lEmail, lPassword } = formLoginValues;
     const { rName, rEmail, rPassword1, rPassword2 } = formRegisterValues;
 
     const handleSumitLogin = ( e ) => {
-        // Deberia de aplicar validacion.
         e.preventDefault();
-        console.log(formLoginValues);
-
-        // tengo que crear el caso en mu reducer
-        // crear la accion (asincrona)
-        // disparar la accion 
         dispatch( startLogin( lEmail, lPassword ) );
-        // aplicar el formato que recive el backend
-
     }
 
     const handleSubmitRegister = ( e ) => {
@@ -42,8 +34,6 @@ export const LoginScreen = () => {
         if ( rPassword1 !== rPassword2 ) {
             return Swal.fire('Error', 'Las contraseñas deben ser iguales.', 'error');            
         }
-        console.log(formRegisterValues);
-
         // tengo que crear el caso en mu reducer
         // crear la accion (asincrona)
         // disparar la accion 
